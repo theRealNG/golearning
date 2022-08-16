@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option go_package = "github.com/theRealNG/golearning/weather_management";
+
+package weather;
+
+service Weather {
+  // Simple RPC
+  rpc AddCity(City) returns (City){}
+  // Server to Client streaming RPC
+  rpc MultiLangWeather(City) returns (stream WeatherInfo){}
+  // Client to Server streaming RPC
+  rpc WeatherInLang(stream City) returns (WeatherInfoArray){}
+  // BiDirectional Streaming RPC
+  rpc MultiCityWeather(stream City) returns (stream WeatherInfo){}
+}
+
+message City {
+  int32 id = 1;
+  float lat = 2;
+  float long = 3;
+  string name = 4;
+}
+
+message WeatherInfo {
+  string description = 1;
+  float max_temperature = 2;
+  float min_temperature = 3;
+  float feels_like = 4;
+  string lang = 5;
+}
+
+message WeatherInfoArray {
+  repeated WeatherInfo weather_infos = 1;
+}
