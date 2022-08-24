@@ -35,6 +35,7 @@ func GetWeather(city *citydb.City, lang string) WeatherResponse {
 	if err != nil {
 		panic(fmt.Sprintf("Failed to get weather: %v", err))
 	}
+	// TODO: Check http status code
 	defer resp.Body.Close()
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {

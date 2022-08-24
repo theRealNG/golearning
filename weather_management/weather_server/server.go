@@ -24,6 +24,7 @@ type WeatherServer struct {
 	mu sync.Mutex
 }
 
+// TODO: Add callback creat a go routine to update the weather for the city into db
 func (s *WeatherServer) AddCity(ctx context.Context, in *pb.City) (*pb.City, error) {
 	log.Printf("Received: %v", in.GetName())
 	db := citydb.CityDB{}
